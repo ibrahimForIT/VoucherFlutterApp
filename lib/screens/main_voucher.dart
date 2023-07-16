@@ -7,6 +7,7 @@ import 'package:fyhaa/views/components/animations/loading_animation_view.dart';
 import 'package:intl/intl.dart';
 import '../providers/filter_providers/date_filter_provider.dart';
 import '../providers/filter_providers/selected_date_filter_provider.dart';
+import '../services/micro_services/date_picker.dart';
 import '../utils/constants/constant.dart';
 import 'package:gap/gap.dart';
 import '../providers/auth_view_model_provider.dart';
@@ -335,15 +336,4 @@ class MainVoucher extends ConsumerWidget {
       ],
     );
   }
-}
-
-Future<DateTime?> selectDate(BuildContext context) async {
-  final DateTime? selectedDate = await showDatePicker(
-    context: context,
-    initialDate: DateTime.now(),
-    firstDate: DateTime(2000),
-    lastDate: DateTime(2100),
-  );
-
-  return selectedDate;
 }
