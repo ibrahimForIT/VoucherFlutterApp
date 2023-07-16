@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "889858529798",
+    "project_id": "fyhaa-8b63a",
+    "storage_bucket": "fyhaa-8b63a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889858529798:android:17e31445da794d25b68187",
+        "android_client_info": {
+          "package_name": "com.example.fyhaa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "889858529798-fmm0l436jqsp4pnk2kj97t4o9r795vo4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlpKtAu43ZtymUvc1zRpyVVSteT9t8t70"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "889858529798-fmm0l436jqsp4pnk2kj97t4o9r795vo4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
