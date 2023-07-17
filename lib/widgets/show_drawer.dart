@@ -1,15 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fyhaa/utils/labels.dart';
 import 'package:gap/gap.dart';
-
 import '../utils/constants/constant.dart';
 
-Drawer Show_Drawer(BuildContext context) {
+Drawer showDrawer(BuildContext context, WidgetRef ref) {
   return Drawer(
     child: ListView(
       padding: EdgeInsets.zero,
       children: <Widget>[
-        const DrawerHeader(
+        DrawerHeader(
           curve: Curves.easeOutQuad,
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -24,7 +25,7 @@ Drawer Show_Drawer(BuildContext context) {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               //Icon for user
-              CircleAvatar(
+              const CircleAvatar(
                 //baclground color of the circle with opacity
                 backgroundColor: ksecondaryColor,
                 radius: 25,
@@ -33,11 +34,15 @@ Drawer Show_Drawer(BuildContext context) {
                       AssetImage('images/logoI.png'), // replace with your image
                 ),
               ),
-              Gap(10),
+              const Gap(10),
               //Text for user
               Text(
-                'User Name',
-                style: TextStyle(
+                FirebaseAuth.instance.currentUser?.email!.substring(
+                      0,
+                      FirebaseAuth.instance.currentUser!.email!.indexOf('@'),
+                    ) ??
+                    'error',
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 16,
                 ),

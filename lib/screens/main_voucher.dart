@@ -35,8 +35,8 @@ class MainVoucher extends ConsumerWidget {
         ref.watch(authViewModelProvider.select((value) => value.user));
 
     return Scaffold(
-      appBar: HomeAppBar(context, ref),
-      drawer: Show_Drawer(context),
+      appBar: homeAppBar(context, ref),
+      drawer: showDrawer(context, ref),
       body: BackgroundTheme(
         child: Consumer(
           builder: (context, ref, child) {
@@ -162,22 +162,7 @@ class MainVoucher extends ConsumerWidget {
     );
   }
 
-// class VersionPage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: kPrimaryColor,
-//       appBar: AppBar(
-//         title: Text('Version Info'),
-//       ),
-//       body: Center(
-//         child: Text('Version 1.0.1'),
-//       ),
-//     );
-//   }
-// }
-
-  AppBar HomeAppBar(BuildContext context, WidgetRef ref) {
+  AppBar homeAppBar(BuildContext context, WidgetRef ref) {
     return AppBar(
       shadowColor: shadowColor,
       //put this #a5955f

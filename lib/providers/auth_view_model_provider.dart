@@ -19,6 +19,13 @@ class AuthViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  String _displayName = '';
+  String get displayName => _displayName;
+  set displayName(String value) {
+    _displayName = value;
+    notifyListeners();
+  }
+
   String _password = '';
   String get password => _password;
   set password(String value) {

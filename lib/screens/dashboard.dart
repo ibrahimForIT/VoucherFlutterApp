@@ -17,7 +17,7 @@ class Dashboard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       // backgroundColor: kPrimaryColor,
-      drawer: Show_Drawer(context),
+      drawer: showDrawer(context, ref),
       appBar: AppBar(
           shadowColor: shadowColor,
           backgroundColor: ksecondaryColor,
