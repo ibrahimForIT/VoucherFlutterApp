@@ -20,13 +20,14 @@ class LoadingNotifier extends StateNotifier<bool> {
     final pdf = await pdfServices.createPdf();
     await pdfServices.printPdf(pdf);
 
-    String downloadUrl = await storageServices.uploadPdf(await pdf.save());
+    // String downloadUrl =
+    await storageServices.uploadPdf(await pdf.save());
 
-    if (await canLaunch(downloadUrl)) {
-      await storageServices.launchURL(downloadUrl);
-    } else {
-      print('Could not launch $downloadUrl');
-    } // Wait for the printMethod to finish
+    // if (await canLaunch(downloadUrl)) {
+    //   await storageServices.launchURL(downloadUrl);
+    // } else {
+    //   print('Could not launch $downloadUrl');
+    // } // Wait for the printMethod to finish
 
     state = false; // Stop loading
   }

@@ -18,30 +18,31 @@ class StorageServices {
     try {
       Reference ref = FirebaseStorage.instance
           .ref('$userId/${type}s/$type${voucher.voucherId}.pdf');
-      UploadTask uploadTask = ref.putData(pdfData);
+      // UploadTask uploadTask = ref.putData(pdfData);
 
-      uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
-        print(
-            'Progress: ${(snapshot.bytesTransferred / snapshot.totalBytes) * 100} %');
-      });
+      // uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
+      //   print(
+      //       'Progress: ${(snapshot.bytesTransferred / snapshot.totalBytes) * 100} %');
+      // });
 
-      uploadTask.then((TaskSnapshot snapshot) {
-        print('Upload complete');
-      });
+      // uploadTask.then((TaskSnapshot snapshot) {
+      //   print('Upload complete');
+      // });
 
       downloadUrl = await ref.getDownloadURL();
-      print("Download URL: $downloadUrl");
+      // print("Download URL: $downloadUrl");
     } catch (e) {
-      print(e);
+      // print(e);
+      rethrow;
     }
     return downloadUrl;
   }
 
-  Future<void> launchURL(String downloadUrl) async {
-    if (await canLaunch(downloadUrl)) {
-      await launch(downloadUrl);
-    } else {
-      throw 'Could not launch $downloadUrl';
-    }
-  }
+  // Future<void> launchURL(String downloadUrl) async {
+  //   if (await canLaunch(downloadUrl)) {
+  //     await launch(downloadUrl);
+  //   } else {
+  //     throw 'Could not launch $downloadUrl';
+  //   }
+  // }
 }

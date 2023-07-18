@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fyhaa/providers/auth_view_model_provider.dart';
 import 'package:fyhaa/screens/dashboard.dart';
 import 'package:fyhaa/utils/labels.dart';
+import 'package:fyhaa/views/extensions/dismiss_keyboaed.dart';
 import 'package:fyhaa/widgets/background_theme_widget.dart';
 import 'package:fyhaa/widgets/snack_bar_error.dart';
 import '../widgets/sing_in_form_widget.dart';
@@ -87,7 +88,7 @@ class SingIn extends ConsumerWidget {
                               onPressed: model.email.isNotEmpty &&
                                       model.password.isNotEmpty
                                   ? () async {
-                                      print(model.email);
+                                      dismissKeyboard();
                                       if (_formKey.currentState!.validate()) {
                                         try {
                                           await model.login(ref);

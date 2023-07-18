@@ -241,6 +241,7 @@ class PdfServices {
           onLayout: (PdfPageFormat format) async => pdf.save());
     } catch (e) {
       // print(e);
+      rethrow;
     }
   }
 }
