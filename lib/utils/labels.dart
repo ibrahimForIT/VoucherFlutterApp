@@ -1,14 +1,11 @@
 class Labels {
-  static const String singInScreenRoute = 'signin_screen';
-  static const String dashboardScreenRoute = 'dashboard_screen';
-  static const String mainVoucherScreenRoute = 'main_voucher_screen';
-
   // static const String alreadyHaveAnAccount = "Already have an account? ";
   static const String appName = "AlFyhaa Vouchers";
+  static const String sysName = "Vouchers System";
   static const String version = "Version 1.0.0";
   static const String developerInfo = "Developed By E.Ibrahim Shaheen";
   static const String allRightsReserved =
-      "2023 All rights reserved to AlFyhaa Exhibition Organizing";
+      "2023 All rights reserved to developer team";
   static const String appBarTitle = "الفيحاء لتنظيم المعارض";
   // static const String confirmPassword = "Confirm Password";
   // static const String done = "DONE";
@@ -75,5 +72,4 @@ class Labels {
   static const String users = "users";
   static const String chequeId = "chequeId";
   static const String totalAmountInWords = "totalAmountInWords";
-  static const String chequeScreenRoute = "cheque_screen";
 }

@@ -5,28 +5,29 @@ import 'package:fyhaa/views/components/animations/data_not_found_animation_view.
 import 'package:fyhaa/views/components/animations/error_animation_view.dart';
 import 'package:fyhaa/views/components/animations/loading_animation_view.dart';
 import 'package:intl/intl.dart';
-import '../providers/filter_providers/date_filter_provider.dart';
-import '../providers/filter_providers/selected_date_filter_provider.dart';
-import '../services/micro_services/date_picker.dart';
-import '../utils/constants/constant.dart';
+import '../../providers/filter_providers/date_filter_provider.dart';
+import '../../providers/filter_providers/selected_date_filter_provider.dart';
+import '../../services/micro_services/date_picker.dart';
+import '../../utils/constants/constant.dart';
 import 'package:gap/gap.dart';
-import '../providers/auth_view_model_provider.dart';
-import '../providers/filter_providers/no_filter_provider.dart';
-import '../providers/filter_providers/search_bar_provider.dart';
-import '../utils/labels.dart';
-import '../widgets/search_bar/search_bar.dart';
-import '../widgets/background_theme_widget.dart';
-import '../widgets/filter_bar_widget.dart';
-import '../widgets/show_drawer.dart';
-import 'save_update_dialog.dart';
-import '../providers/print_loading_provider.dart';
-import '../providers/service_voucher_provider.dart';
-import '../widgets/card_vouchers_widget.dart';
+import '../../providers/auth_view_model_provider.dart';
+import '../../providers/filter_providers/no_filter_provider.dart';
+import '../../providers/filter_providers/search_bar_provider.dart';
+import '../../utils/labels.dart';
+import '../../widgets/search_bar/search_bar.dart';
+import '../../widgets/background_theme_widget.dart';
+import '../../widgets/filter_bar_widget.dart';
+import '../../widgets/show_drawer.dart';
+import '../../widgets/add_update_voucher_dialog.dart';
+import '../../providers/print_loading_provider.dart';
+import '../../providers/service_voucher_provider.dart';
+import '../../widgets/card_vouchers_widget.dart';
+import '../../utils/constants/routes.dart';
 
-class MainVoucher extends ConsumerWidget {
-  static const String screenRoute = Labels.mainVoucherScreenRoute;
+class Voucher extends ConsumerWidget {
+  static const String screenRoute = rvoucherViewRoute;
 
-  const MainVoucher({super.key});
+  const Voucher({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

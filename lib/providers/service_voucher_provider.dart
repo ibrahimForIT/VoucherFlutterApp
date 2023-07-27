@@ -163,7 +163,8 @@ final lastIdProvider =
   return 0;
 });
 
-Future<List<String>> searchData(WidgetRef ref, String pattern, type) async {
+Future<List<String>> searchData(
+    WidgetRef ref, String pattern, type, context) async {
   final userIdAsyncValue = ref.watch(currentUserProvider);
   final userId = userIdAsyncValue.maybeWhen(
     data: (value) => value, // If the data is available, get the value
@@ -177,11 +178,13 @@ Future<List<String>> searchData(WidgetRef ref, String pattern, type) async {
       .get();
 
   // Convert to Set to ensure uniqueness
+
   Set<String> customerNames = querySnapshot.docs
       .map((doc) => doc.data()['customerName'] as String)
       .toSet();
 
   List<String> results =
       customerNames.where((name) => name.contains(pattern)).toList();
+
   return results;
 }

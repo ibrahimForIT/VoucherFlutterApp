@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fyhaa/providers/auth_view_model_provider.dart';
-import 'package:fyhaa/screens/dashboard.dart';
+import 'package:fyhaa/views/screens/dashboard_view.dart';
 import 'package:fyhaa/utils/labels.dart';
 import 'package:fyhaa/views/extensions/dismiss_keyboaed.dart';
 import 'package:fyhaa/widgets/background_theme_widget.dart';
 import 'package:fyhaa/widgets/snack_bar_error.dart';
-import '../widgets/sing_in_form_widget.dart';
+import '../../utils/constants/routes.dart';
+import '../../widgets/sing_in_form_widget.dart';
+import 'dart:developer' as devtools show log;
 
 class SingIn extends ConsumerWidget {
-  static const String screenRoute = Labels.singInScreenRoute;
+  static const String screenRoute = singInViewRoute;
 
   SingIn({super.key});
   final _formKey = GlobalKey<FormState>();
@@ -97,6 +99,7 @@ class SingIn extends ConsumerWidget {
                                               context, Dashboard.screenRoute);
                                         } catch (e) {
                                           AppSnackbar(context).error(e);
+                                          devtools.log(e.toString());
                                         }
                                       }
                                     }

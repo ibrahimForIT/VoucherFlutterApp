@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import '../utils/labels.dart';
 
 final authViewModelProvider =
@@ -66,6 +65,13 @@ class AuthViewModel extends ChangeNotifier {
     try {
       await _auth.signInWithEmailAndPassword(
           email: _email, password: _password);
+
+      user!.updateDisplayName(
+        _email.substring(
+          0,
+          _email.indexOf('@'),
+        ),
+      );
       // print('login success');
       isLoading = false;
       // final firestore = FirebaseFirestore.instance;

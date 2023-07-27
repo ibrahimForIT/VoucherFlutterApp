@@ -1,20 +1,22 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fyhaa/screens/cheque_screen.dart';
-import '../providers/auth_view_model_provider.dart';
-import '../screens/main_voucher.dart';
-import '../widgets/background_theme_widget.dart';
-import '../utils/constants/constant.dart';
-import '../providers/service_voucher_provider.dart';
-import '../utils/labels.dart';
-import '../widgets/show_drawer.dart';
+import '../../providers/auth_view_model_provider.dart';
+import '../../widgets/background_theme_widget.dart';
+import '../../utils/constants/constant.dart';
+import '../../providers/service_voucher_provider.dart';
+import '../../utils/labels.dart';
+import '../../widgets/show_drawer.dart';
+import '../../utils/constants/routes.dart';
+import 'dart:developer' as devtools show log;
 
 class Dashboard extends ConsumerWidget {
-  static const String screenRoute = Labels.dashboardScreenRoute;
+  static const String screenRoute = dashboardViewRoute;
   const Dashboard({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    devtools.log(FirebaseAuth.instance.currentUser!.toString());
     return Scaffold(
       // backgroundColor: kPrimaryColor,
       drawer: showDrawer(context, ref),
@@ -80,33 +82,31 @@ class Dashboard extends ConsumerWidget {
                                 child: Image.asset('images/r.jpg'),
                                 onTap: () {
                                   // getNo('Rvoucher');
-                                  ref.read(collectionNameProvider.state).state =
-                                      Labels.rVoucher;
-                                  Navigator.pushNamed(
-                                    context,
-                                    MainVoucher.screenRoute,
-                                  );
+                                  ref
+                                      .read(collectionNameProvider.notifier)
+                                      .state = Labels.rVoucher;
+                                  Navigator.of(context).pushNamedAndRemoveUntil(
+                                      rvoucherViewRoute, (_) => true);
                                 }),
                             InkWell(
                                 child: Image.asset('images/p.jpg'),
                                 onTap: () {
-                                  ref.read(collectionNameProvider.state).state =
-                                      Labels.pVoucher;
+                                  ref
+                                      .read(collectionNameProvider.notifier)
+                                      .state = Labels.pVoucher;
 
-                                  Navigator.pushNamed(
-                                    context,
-                                    MainVoucher.screenRoute,
-                                  );
+                                  Navigator.of(context).pushNamedAndRemoveUntil(
+                                      pvoucherViewRoute, (_) => true);
                                 }),
                             InkWell(
                               child: Image.asset('images/c.jpg'),
                               onTap: () {
-                                ref.read(collectionNameProvider.state).state =
-                                    Labels.cheque;
-                                Navigator.pushNamed(
-                                  context,
-                                  ChequeScreen.screenRoute,
-                                );
+                                ref
+                                    .read(collectionNameProvider.notifier)
+                                    .state = Labels.cheque;
+
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                    chequeViewRoute, (_) => true);
                               },
                             ),
                           ]),

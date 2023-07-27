@@ -2,12 +2,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fyhaa/providers/auth_view_model_provider.dart';
-import 'package:fyhaa/screens/cheque_screen.dart';
-
-import 'package:fyhaa/screens/dashboard.dart';
-import 'package:fyhaa/screens/main_voucher.dart';
-import 'package:fyhaa/screens/sing_in.dart';
-
+import 'package:fyhaa/utils/constants/routes.dart';
+import 'package:fyhaa/views/screens/cheque_view.dart';
+import 'package:fyhaa/views/screens/dashboard_view.dart';
+import 'package:fyhaa/views/screens/info_view.dart';
+import 'package:fyhaa/views/screens/voucher_view.dart';
+import 'package:fyhaa/views/screens/sing_in_view.dart';
 import '../utils/constants/constant.dart';
 import 'firebase_options.dart';
 import 'utils/labels.dart';
@@ -31,7 +31,6 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final auth = ref.read(authViewModelProvider);
     return MaterialApp(
-      //add thame to change foat button color
       theme: ThemeData(
         primarySwatch: Colors.brown,
         primaryColor: Colors.brown[400],
@@ -44,9 +43,11 @@ class MyApp extends ConsumerWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => auth.user != null ? const Dashboard() : SingIn(),
-        Dashboard.screenRoute: (context) => const Dashboard(),
-        MainVoucher.screenRoute: (context) => const MainVoucher(),
-        ChequeScreen.screenRoute: (context) => const ChequeScreen(),
+        dashboardViewRoute: (context) => const Dashboard(),
+        rvoucherViewRoute: (context) => const Voucher(),
+        pvoucherViewRoute: (context) => const Voucher(),
+        chequeViewRoute: (context) => const ChequeView(),
+        infoViewRoute: (context) => const InfoView(),
       },
     );
   }

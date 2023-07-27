@@ -186,48 +186,45 @@ Future<Voucher?> createOrUpdateVoucher(
                                 }),
                           ),
                           Expanded(
-                              flex: 3,
-                              child: TypeAheadField<String>(
-                                textFieldConfiguration: TextFieldConfiguration(
-                                  autofocus: false,
-                                  textAlign: TextAlign.center,
-                                  controller: customerNameController,
-                                  decoration: const InputDecoration(
-                                    labelText: Labels.customerName,
-                                  ),
-                                  onChanged: (String value) {
-                                    customerName =
-                                        value; // Assuming `customerName` is a variable you want to save the value to.
-                                  },
+                            flex: 3,
+                            child: TypeAheadField<String>(
+                              textFieldConfiguration: TextFieldConfiguration(
+                                autofocus: false,
+                                textAlign: TextAlign.center,
+                                controller: customerNameController,
+                                decoration: const InputDecoration(
+                                  labelText: Labels.customerName,
                                 ),
-                                itemBuilder:
-                                    (BuildContext context, suggestion) {
-                                  return ListTile(
-                                    title: Text(suggestion),
+                                onChanged: (String value) {
+                                  customerName =
+                                      value; // Assuming `customerName` is a variable you want to save the value to.
+                                },
+                              ),
+                              itemBuilder: (BuildContext context, suggestion) {
+                                return ListTile(
+                                  title: Text(suggestion),
+                                );
+                              },
+                              onSuggestionSelected: (Object? suggestion) {
+                                customerNameController.text =
+                                    suggestion.toString();
+                                customerName = suggestion.toString();
+                              },
+                              suggestionsCallback: (String pattern) async {
+                                try {
+                                  return await searchData(
+                                      ref, pattern, type, context);
+                                } catch (e) {
+                                  const ListTile(
+                                    title:
+                                        Text('Check your internet connection'),
                                   );
-                                },
-                                onSuggestionSelected: (Object? suggestion) {
-                                  customerNameController.text =
-                                      suggestion.toString();
-                                  customerName = suggestion.toString();
-                                },
-                                suggestionsCallback: (String pattern) async {
-                                  return await searchData(ref, pattern, type);
-                                },
-                              )),
+                                  return [];
+                                }
+                              },
+                            ),
+                          ),
                         ],
-
-                        //  TextField(
-                        //     textAlign: TextAlign.center,
-                        //     autofocus: true,
-                        //     controller: customerNameController,
-                        //     decoration: const InputDecoration(
-                        //       labelText: Labels.coustomerName,
-                        //     ),
-                        //     onChanged: (value) {
-                        //       customerName = value;
-                        //     },
-                        //   ),
                       ),
                       TextField(
                         inputFormatters: [_formatter],
@@ -302,7 +299,7 @@ Future<Voucher?> createOrUpdateVoucher(
                               child: TextField(
                                   onTap: () async {
                                     FocusScope.of(context)
-                                        .requestFocus(new FocusNode());
+                                        .requestFocus(FocusNode());
                                     DateTime? newDate = await showDatePicker(
                                       context: context,
                                       initialDate: bankdate ?? DateTime.now(),

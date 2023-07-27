@@ -36,7 +36,7 @@ class SearchBarWidget extends ConsumerWidget {
             },
             decoration: InputDecoration(
               suffixIcon: IconButton(
-                padding: EdgeInsets.all(1),
+                padding: const EdgeInsets.all(1),
                 icon: const Icon(Icons.clear),
                 onPressed: () {
                   searchController.clear();
