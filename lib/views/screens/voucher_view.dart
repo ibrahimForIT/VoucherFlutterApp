@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fyhaa/providers/filter_providers/bank_filter_provider.dart';
-import 'package:fyhaa/views/components/animations/data_not_found_animation_view.dart';
+import 'package:fyhaa/views/components/animations/empty_contents_animation_view.dart';
 import 'package:fyhaa/views/components/animations/error_animation_view.dart';
 import 'package:fyhaa/views/components/animations/loading_animation_view.dart';
 import 'package:intl/intl.dart';
@@ -23,6 +23,7 @@ import '../../providers/print_loading_provider.dart';
 import '../../providers/service_voucher_provider.dart';
 import '../../widgets/card_vouchers_widget.dart';
 import '../../utils/constants/routes.dart';
+import 'dart:developer' as devtools show log;
 
 class Voucher extends ConsumerWidget {
   static const String screenRoute = rvoucherViewRoute;
@@ -47,22 +48,12 @@ class Voucher extends ConsumerWidget {
 
             return isLoading
                 ? const Center(child: LoadingAnimationView())
-                // ? const Column(
-                //     mainAxisAlignment: MainAxisAlignment.center,
-                //     children: [
-                //       Center(child: CircularProgressIndicator()),
-                //       SizedBox(height: 20),
-                //       Center(
-                //           child: Text(
-                //         'Uploading...',
-                //         style: TextStyle(fontSize: 20, color: Colors.brown),
-                //       )),
-                //     ],
-                //   )
                 : voucherStream.when(
                     data: (vouchers) {
+                      // I need a condition to check if firestore is empty befor check if vouchers is empty
                       if (vouchers.isEmpty) {
-                        return const Center(child: DataNotFoundAnimationView());
+                        return const Center(
+                            child: EmptyContentsAnimationView());
                       } else {
                         return ListView.builder(
                           itemBuilder: (context, index) {
@@ -129,20 +120,9 @@ class Voucher extends ConsumerWidget {
                     },
                     loading: () => const Center(child: LoadingAnimationView()),
                     error: (err, stack) {
-                      print(err);
-                      print(stack);
-                      return Center(child: ErrorAnimationView());
-                      // return Center(
-                      //     child: Center(
-                      //   child: Container(
-                      //       width: 400,
-                      //       color: Colors.red,
-                      //       child: Text(
-                      //         'Error: There are an error in the database, please contact the developer.',
-                      //         style:
-                      //             TextStyle(color: Colors.white, fontSize: 16),
-                      //       )),
-                      // ));
+                      devtools.log(err.toString());
+                      devtools.log(stack.toString());
+                      return const Center(child: ErrorAnimationView());
                     },
                   );
           },
@@ -188,7 +168,7 @@ class Voucher extends ConsumerWidget {
               //I need to add other widget here in same row
 
               child: ref.watch(showSearchBarProvider)
-                  ? SearchBarWidget()
+                  ? const SearchBarWidget()
                   : SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
